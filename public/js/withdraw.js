@@ -17,7 +17,8 @@ function submitWithdrawForm() {
                 $("span#userBalance").text(response.balance);
             },
             error: function(error) {
-                showMessage('Error during withdraw: ' + error.responseJSON.error.amount !== undefined ? error.responseJSON.error.amount[0] : error.responseJSON.error);
+                console.log(error)
+                showMessage('Error during withdraw: ' + (error.responseJSON.error.amount !== undefined ? error.responseJSON.error.amount[0] : error.responseJSON.error));
             }
         });
     } else {

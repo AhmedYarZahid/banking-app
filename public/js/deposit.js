@@ -17,7 +17,7 @@ function submitDepositForm() {
                 $("span#userBalance").text(response.balance);
             },
             error: function(error) {
-                showMessage('Error during deposit: ' + error.responseJSON.error.amount !== undefined ? error.responseJSON.error.amount[0] : error.responseJSON.error);
+                showMessage('Error during deposit: ' + (error.responseJSON.error.amount !== undefined ? error.responseJSON.error.amount[0] : error.responseJSON.error));
             }
         });
     } else {
