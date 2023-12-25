@@ -18,31 +18,4 @@
         </div>
     </div>
 </div>
-<script>
-    /**
-     * Deposit Amount.
-     */
-    function submitDepositForm() {
-        var amount = $('#depositAmount').val();
-
-        if(amount) {
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('deposit') }}',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    amount: amount
-                },
-                success: function(response) {
-                    alert('Deposit successful!');
-                    $("span#userBalance").text(response.balance);
-                },
-                error: function(error) {
-                    alert('Error during deposit: ' + error.responseText);
-                }
-            });
-        } else {
-            alert("Amount should not be empty!")
-        }
-    }
-</script>
+<script src="{{ asset('js/deposit.js') }}"></script>

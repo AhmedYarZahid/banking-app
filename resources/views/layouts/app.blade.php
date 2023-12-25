@@ -21,6 +21,12 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var baseUrl = "{{ url('/') }}";
+        var userId = {{ Auth::id() }};
+        var csrfToken = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ asset('js/global.js') }}"></script>
 </head>
 <body>
     <div id="app">

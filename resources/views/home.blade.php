@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <div id="message-container"></div>
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"><i class="fa fa-home"></i> Home</a>

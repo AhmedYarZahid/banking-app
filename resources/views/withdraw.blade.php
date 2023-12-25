@@ -18,31 +18,5 @@
         </div>
     </div>
 </div>
-<script>
-    /**
-     * Withdraw amount.
-     */
-    function submitWithdrawForm() {
-        var amount = $('#withdrawAmount').val();
+<script src="{{ asset('js/withdraw.js') }}"></script>
 
-        if(amount) {
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('withdraw') }}',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    amount: amount
-                },
-                success: function(response) {
-                    alert('Withdrawal successful!');
-                    $("span#userBalance").text(response.balance);
-                },
-                error: function(error) {
-                    alert('Error during withdrawal: ' + error.responseText);
-                }
-            });
-        } else {
-            alert("Amount should not be empty!")
-        }
-    }
-</script>

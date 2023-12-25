@@ -23,7 +23,8 @@ class TransactionController extends Controller
             ->where('user_id', $userId)
             ->orWhere('sender_id', $userId)
             ->orWhere('receiver_id', $userId)
-            ->paginate(2);
+            ->orderBy('created_at', 'desc')
+            ->paginate(5 );
     }
 
     /**
@@ -34,6 +35,14 @@ class TransactionController extends Controller
      */
     public function deposit(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric||min:10',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
         $user = Auth::user();
         $amount = $request->input('amount');
 
@@ -60,6 +69,14 @@ class TransactionController extends Controller
      */
     public function withdraw(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric||min:10',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
         $user = Auth::user();
         $amount = $request->input('amount');
 
@@ -93,7 +110,7 @@ class TransactionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric||min:0',
         ]);
 
         if ($validator->fails()) {
